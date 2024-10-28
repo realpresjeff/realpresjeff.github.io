@@ -340,7 +340,7 @@
 
         if (member.issue && member.issue.length > 0) {
           let childList = document.createElement("ul");
-          childList.className = "hidden"; // Hide children initially
+          childList.className = "tree"; // Hide children initially
           member.issue.forEach((child) => {
             childList.appendChild(createFamilyTree(child));
           });
