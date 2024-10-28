@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Family Tree</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .tree {
+        list-style-type: none;
+        padding-left: 20px;
+      }
+      .toggle {
+        cursor: pointer;
+        color: blue;
+        text-decoration: underline;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Family Tree of Charlemagne to Thomas Jefferson</h1>
+    <ul id="familyTree" class="tree"></ul>
+
+    <script>
+      // JSON data for the family tree
+      const familyData = {
+        name: "Charlemagne",
+        title: ["Holy Roman Emperor"],
+        spouse: "Hildegard of Vinzgouw",
+        issue: [
+          {
+            name: "Louis the Pious",
+            spouse: "Judith of Altorf",
+            issue: [
+              {
+                name: "Charles II",
+                titles: ["King of France"],
+                spouse: "Ermentrude of Orleans",
+                issue: [
+                  {
+                    name: "Judith of France",
+                    spouse: "Baudouin I of Flanders",
+                    issue: [
+                      {
+                        name: "Baudouin II of Flanders",
+                        spouse: "AElfthryth of Wessex",
+                        issue: [
+                          {
+                            name: "Arnulf of Flanders",
+                            spouse: "Adele of Vermandois",
+                            issue: [
+                              {
+                                name: "Baudoin III of Flanders",
+                                spouse: "Mathilde of Saxony",
+                                issue: [
+                                  {
+                                    name: "Arnulf II of Flanders",
+                                    spouse: "Rozala of Lombardy",
+                                    issue: [
+                                      {
+                                        name: "Baudoin IV of Flanders",
+                                        spouse: "Ogive of Luxembourg",
+                                        issue: [
+                                          {
+                                            name: "Baudoin V of Flanders",
+                                            spouse: "Adela of France",
+                                            issue: [
+                                              {
+                                                name: "Matilda of Flanders",
+                                                spouse:
+                                                  "William I, King of England",
+                                                issue: [
+                                                  {
+                                                    name: "Henry I, King of England",
+                                                    spouse: "Maud of Scotland",
+                                                    issue: [
+                                                      {
+                                                        name: "Maud of England",
+                                                        spouse:
+                                                          "Geoffrey Plantagenet",
+                                                        issue: [
+                                                          {
+                                                            name: "Henry II, King of England",
+                                                            spouse:
+                                                              "Ida de Tony",
+                                                            issue: [
+                                                              {
+                                                                name: "Sir William Longespee",
+                                                                spouse:
+                                                                  "Ela of Salisbury",
+                                                                issue: [
+                                                                  {
+                                                                    name: "William Longespee",
+                                                                    spouse:
+                                                                      "Idoine de Camville",
+                                                                    issue: [
+                                                                      {
+                                                                        name: "Ela Longespee",
+                                                                        spouse:
+                                                                          "Sir James de Audley",
+                                                                        issue: [
+                                                                          {
+                                                                            name: "Sir Hugh I de Audley",
+                                                                            spouse:
+                                                                              "Iseult de Mortimer",
+                                                                            issue:
+                                                                              [
+                                                                                {
+                                                                                  name: "Alice de Audley",
+                                                                                  spouse:
+                                                                                    "Sir Ralph de Neville",
+                                                                                  issue:
+                                                                                    [
+                                                                                      {
+                                                                                        name: "Sir John de Neville",
+                                                                                        spouse:
+                                                                                          "Maude de Percy",
+                                                                                        issue:
+                                                                                          [
+                                                                                            {
+                                                                                              name: "Sir Ralph Neville",
+                                                                                              spouse:
+                                                                                                "Joan Beaufort",
+                                                                                              issue:
+                                                                                                [
+                                                                                                  {
+                                                                                                    name: "Sir Edward Neville",
+                                                                                                    spouse:
+                                                                                                      "Katherine Howard",
+                                                                                                    issue:
+                                                                                                      [
+                                                                                                        {
+                                                                                                          name: "Catherine Neville",
+                                                                                                          spouse:
+                                                                                                            "Robert Tanfield",
+                                                                                                          issue:
+                                                                                                            [
+                                                                                                              {
+                                                                                                                name: "William Tanfield",
+                                                                                                                spouse:
+                                                                                                                  "Elizabeth Stavely",
+                                                                                                                issue:
+                                                                                                                  [
+                                                                                                                    {
+                                                                                                                      name: "Frances Tanfield",
+                                                                                                                      spouse:
+                                                                                                                        "Bridget Cave",
+                                                                                                                      issue:
+                                                                                                                        [
+                                                                                                                          {
+                                                                                                                            name: "Anne Tanfield",
+                                                                                                                            spouse:
+                                                                                                                              "Clement Vincent",
+                                                                                                                            issue:
+                                                                                                                              [
+                                                                                                                                {
+                                                                                                                                  name: "Elizabeth Vincent",
+                                                                                                                                  spouse:
+                                                                                                                                    "Richard Lane",
+                                                                                                                                  issue:
+                                                                                                                                    [
+                                                                                                                                      {
+                                                                                                                                        name: "Dorothy Lane",
+                                                                                                                                        spouse:
+                                                                                                                                          "William Randolph",
+                                                                                                                                        issue:
+                                                                                                                                          [
+                                                                                                                                            {
+                                                                                                                                              name: "Richard Randolph",
+                                                                                                                                              spouse:
+                                                                                                                                                "Elizabeth Ryland",
+                                                                                                                                              issue:
+                                                                                                                                                [
+                                                                                                                                                  {
+                                                                                                                                                    name: "Col. William Randolph",
+                                                                                                                                                    spouse:
+                                                                                                                                                      "Mary Isham",
+                                                                                                                                                    issue:
+                                                                                                                                                      [
+                                                                                                                                                        {
+                                                                                                                                                          name: "Isham Randolph",
+                                                                                                                                                          spouse:
+                                                                                                                                                            "Jane Rogers",
+                                                                                                                                                          issue:
+                                                                                                                                                            [
+                                                                                                                                                              {
+                                                                                                                                                                name: "Jane Randolph",
+                                                                                                                                                                spouse:
+                                                                                                                                                                  "Peter Jefferson",
+                                                                                                                                                                issue:
+                                                                                                                                                                  [
+                                                                                                                                                                    {
+                                                                                                                                                                      name: "Thomas Jefferson",
+                                                                                                                                                                      titles:
+                                                                                                                                                                        [
+                                                                                                                                                                          "3rd U.S. President of the USA",
+                                                                                                                                                                        ],
+                                                                                                                                                                      spouse:
+                                                                                                                                                                        "Jane Randolph",
+                                                                                                                                                                      issue:
+                                                                                                                                                                        [
+                                                                                                                                                                          {
+                                                                                                                                                                            name: "Alfred Morris Jeffrson",
+                                                                                                                                                                            spouse:
+                                                                                                                                                                              "Gabriella",
+                                                                                                                                                                            issue:
+                                                                                                                                                                              [
+                                                                                                                                                                                {
+                                                                                                                                                                                  name: "Thomas Morris Jeffrson",
+                                                                                                                                                                                  spouse:
+                                                                                                                                                                                    "Martha Ann Brown",
+                                                                                                                                                                                  issue:
+                                                                                                                                                                                    [
+                                                                                                                                                                                      {
+                                                                                                                                                                                        name: "George Thomas Morris Jeffrson",
+                                                                                                                                                                                        spouse:
+                                                                                                                                                                                          "Susan Ann Mayo",
+                                                                                                                                                                                        issue:
+                                                                                                                                                                                          [
+                                                                                                                                                                                            {
+                                                                                                                                                                                              name: "Edgar Morris Jeffrson",
+                                                                                                                                                                                              spouse:
+                                                                                                                                                                                                "Leena Miles",
+                                                                                                                                                                                              issue:
+                                                                                                                                                                                                [
+                                                                                                                                                                                                  {
+                                                                                                                                                                                                    name: "Arthur Morris Jeffrson",
+                                                                                                                                                                                                    spouse:
+                                                                                                                                                                                                      "Geraldine Morris Jefferson Bolden",
+                                                                                                                                                                                                    issue:
+                                                                                                                                                                                                      [
+                                                                                                                                                                                                        {
+                                                                                                                                                                                                          name: "Steven Morris Jeffrson",
+                                                                                                                                                                                                          spouse:
+                                                                                                                                                                                                            "Belinda Craighead Snow",
+                                                                                                                                                                                                          issue:
+                                                                                                                                                                                                            [
+                                                                                                                                                                                                              {
+                                                                                                                                                                                                                name: "Ashton James Snow Morris Jefferson",
+                                                                                                                                                                                                                spouse:
+                                                                                                                                                                                                                  "",
+                                                                                                                                                                                                                title:
+                                                                                                                                                                                                                  [
+                                                                                                                                                                                                                    "Powhatan XVI, King of the Indians",
+                                                                                                                                                                                                                  ],
+                                                                                                                                                                                                                issue:
+                                                                                                                                                                                                                  [],
+                                                                                                                                                                                                              },
+                                                                                                                                                                                                            ],
+                                                                                                                                                                                                        },
+                                                                                                                                                                                                      ],
+                                                                                                                                                                                                  },
+                                                                                                                                                                                                ],
+                                                                                                                                                                                            },
+                                                                                                                                                                                          ],
+                                                                                                                                                                                      },
+                                                                                                                                                                                    ],
+                                                                                                                                                                                },
+                                                                                                                                                                              ],
+                                                                                                                                                                          },
+                                                                                                                                                                        ],
+                                                                                                                                                                    },
+                                                                                                                                                                  ],
+                                                                                                                                                              },
+                                                                                                                                                            ],
+                                                                                                                                                        },
+                                                                                                                                                      ],
+                                                                                                                                                  },
+                                                                                                                                                ],
+                                                                                                                                            },
+                                                                                                                                          ],
+                                                                                                                                      },
+                                                                                                                                    ],
+                                                                                                                                },
+                                                                                                                              ],
+                                                                                                                          },
+                                                                                                                        ],
+                                                                                                                    },
+                                                                                                                  ],
+                                                                                                              },
+                                                                                                            ],
+                                                                                                        },
+                                                                                                      ],
+                                                                                                  },
+                                                                                                ],
+                                                                                            },
+                                                                                          ],
+                                                                                      },
+                                                                                    ],
+                                                                                },
+                                                                              ],
+                                                                          },
+                                                                        ],
+                                                                      },
+                                                                    ],
+                                                                  },
+                                                                ],
+                                                              },
+                                                            ],
+                                                          },
+                                                        ],
+                                                      },
+                                                    ],
+                                                  },
+                                                ],
+                                              },
+                                            ],
+                                          },
+                                        ],
+                                      },
+                                    ],
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      };
+
+      // Function to recursively generate HTML list items for each family member
+      function createFamilyTree(member) {
+        let titles = member.title ? ` (${member.title.join(", ")})` : "";
+        let spouse = member.spouse ? `, Spouse: ${member.spouse}` : "";
+
+        let listItem = document.createElement("li");
+        listItem.innerHTML = `<span class="toggle" onclick="toggleVisibility(event)">+</span> ${member.name}${titles}${spouse}`;
+
+        if (member.issue && member.issue.length > 0) {
+          let childList = document.createElement("ul");
+          childList.className = "tree hidden"; // Hide children initially
+          member.issue.forEach((child) => {
+            childList.appendChild(createFamilyTree(child));
+          });
+          listItem.appendChild(childList);
+        }
+        return listItem;
+      }
+
+      // Append the tree to the root HTML element
+      document
+        .getElementById("familyTree")
+        .appendChild(createFamilyTree(familyData));
+
+      // Function to toggle visibility of child lists
+      function toggleVisibility(event) {
+        let target = event.target;
+        let childList = target.parentNode.querySelector(".tree");
+        if (childList) {
+          childList.classList.toggle("hidden");
+          target.innerText = childList.classList.contains("hidden") ? "+" : "-";
+        }
+      }
+    </script>
+  </body>
+</html>
