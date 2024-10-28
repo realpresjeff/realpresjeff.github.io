@@ -23,7 +23,7 @@
     </style>
   </head>
   <body>
-    <h1>Family Tree of Charlemagne to Thomas Jefferson</h1>
+    <h1>Family Tree of Ashton Jefferson</h1>
     <ul id="familyTree" class="tree"></ul>
 
     <script>
@@ -340,7 +340,7 @@
 
         if (member.issue && member.issue.length > 0) {
           let childList = document.createElement("ul");
-          childList.className = "tree hidden"; // Hide children initially
+          childList.className = "hidden"; // Hide children initially
           member.issue.forEach((child) => {
             childList.appendChild(createFamilyTree(child));
           });
