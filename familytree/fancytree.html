@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tree Trunk for Family Tree</title>
+    <style>
+      body {
+        background-color: #2a5036;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      svg {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+      }
+      .trunk {
+        fill: none;
+        stroke: #8b5a2b;
+        stroke-width: 20;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .root {
+        fill: none;
+        stroke: #8b5a2b;
+        stroke-width: 15;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    </style>
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600">
+      <!-- Main Trunk -->
+      <path
+        class="trunk"
+        d="M200 600 C 210 500, 230 400, 220 300 S 180 150, 200 50"
+      />
+
+      <!-- Left Roots -->
+      <path class="root" d="M200 600 C 160 550, 120 570, 100 600" />
+      <path class="root" d="M200 600 C 170 570, 130 590, 110 620" />
+
+      <!-- Right Roots -->
+      <path class="root" d="M200 600 C 240 550, 280 570, 300 600" />
+      <path class="root" d="M200 600 C 230 570, 270 590, 290 620" />
+
+      <!-- Additional twists in the trunk -->
+      <path class="trunk" d="M220 300 C 230 250, 240 200, 200 150" />
+      <path class="trunk" d="M180 300 C 170 250, 160 200, 200 150" />
+
+      <!-- Base for Branches -->
+      <path class="trunk" d="M200 50 C 180 30, 160 20, 150 0" />
+      <path class="trunk" d="M200 50 C 220 30, 240 20, 250 0" />
+    </svg>
+  </body>
+</html>
