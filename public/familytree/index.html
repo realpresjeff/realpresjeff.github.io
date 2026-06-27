@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../usa.png">
+    <title>Family Tree</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .tree {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .toggle {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Family Tree</h1>
+    <a href="https://famouskin.com/famous-kin-chart.php?name=5818+thomas+jefferson&kin=4143+charlemagne">source
+        (Charlamagne to Thomas Jefferson)</a>
+    <a
+        href="https://history.stackexchange.com/questions/14460/what-is-the-current-academic-consensus-on-charlemagnes-genealogy">source
+        (St. Arnulf to Charlemagne)</a>
+    <a
+        href="https://ashton-j-jefferson.medium.com/im-thomas-jefferson-s-grandson-twice-and-we-were-owned-by-black-people-77c49236e044">source
+        (Ashton James Morris DNA analysis)</a>
+    <ul id="familyTree" class="tree"></ul>
+
+    <script>
+        // JSON data for the family tree
+        const familyData = {
+            "name": "St. Arnulf of Metz",
+            "title": "",
+            "spouse": "Doda",
+            "issue": [
+                {
+                    "name": "Ansegisel",
+                    "title": "",
+                    "spouse": "St. Begga",
+                    "issue": [
+                        {
+                            "name": "Pepin of Herstal",
+                            "title": "",
+                            "spouse": "Plectrude",
+                            "issue": [
+                                {
+                                    "name": "Charles Martel",
+                                    "title": "",
+                                    "spouse": "Rotrude of Hesbaye",
+                                    "issue": [
+                                        {
+                                            "name": "Pepin the Short",
+                                            "title": "",
+                                            "spouse": "Bertrada of Laon",
+                                            "issue": [
+                                                {
+                                                    "name": "Charlemagne",
+                                                    "title": [
+                                                        "Holy Roman Emperor"
+                                                    ],
+                                                    "spouse": "Hildegard of Vinzgouw",
+                                                    "issue": [
+                                                        {
+                                                            "name": "Louis the Pious",
+                                                            "spouse": "Judith of Altorf",
+                                                            "issue": [
+                                                                {
+                                                                    "name": "Charles II",
+                                                                    "titles": [
+                                                                        "King of France"
+                                                                    ],
+                                                                    "spouse": "Ermentrude of Orleans",
+                                                                    "issue": [
+                                                                        {
+                                                                            "name": "Judith of France",
+                                                                            "spouse": "Baudouin I of Flanders",
+                                                                            "issue": [
+                                                                                {
+                                                                                    "name": "Baudouin II of Flanders",
+                                                                                    "spouse": "AElfthryth of Wessex",
+                                                                                    "issue": [
+                                                                                        {
+                                                                                            "name": "Arnulf of Flanders",
+                                                                                            "spouse": "Adele of Vermandois",
+                                                                                            "issue": [
+                                                                                                {
+                                                                                                    "name": "Baudoin III of Flanders",
+                                                                                                    "spouse": "Mathilde of Saxony",
+                                                                                                    "issue": [
+                                                                                                        {
+                                                                                                            "name": "Arnulf II of Flanders",
+                                                                                                            "spouse": "Rozala of Lombardy",
+                                                                                                            "issue": [
+                                                                                                                {
+                                                                                                                    "name": "Baudoin IV of Flanders",
+                                                                                                                    "spouse": "Ogive of Luxembourg",
+                                                                                                                    "issue": [
+                                                                                                                        {
+                                                                                                                            "name": "Baudoin V of Flanders",
+                                                                                                                            "spouse": "Adela of France",
+                                                                                                                            "issue": [
+                                                                                                                                {
+                                                                                                                                    "name": "Matilda of Flanders",
+                                                                                                                                    "spouse": "William I, King of England",
+                                                                                                                                    "issue": [
+                                                                                                                                        {
+                                                                                                                                            "name": "Henry I, King of England",
+                                                                                                                                            "spouse": "Maud of Scotland",
+                                                                                                                                            "issue": [
+                                                                                                                                                {
+                                                                                                                                                    "name": "Maud of England",
+                                                                                                                                                    "spouse": "Geoffrey Plantagenet",
+                                                                                                                                                    "issue": [
+                                                                                                                                                        {
+                                                                                                                                                            "name": "Henry II, King of England",
+                                                                                                                                                            "spouse": "Ida de Tony",
+                                                                                                                                                            "issue": [
+                                                                                                                                                                {
+                                                                                                                                                                    "name": "Sir William Longespee",
+                                                                                                                                                                    "spouse": "Ela of Salisbury",
+                                                                                                                                                                    "issue": [
+                                                                                                                                                                        {
+                                                                                                                                                                            "name": "William Longespee",
+                                                                                                                                                                            "spouse": "Idoine de Camville",
+                                                                                                                                                                            "issue": [
+                                                                                                                                                                                {
+                                                                                                                                                                                    "name": "Ela Longespee",
+                                                                                                                                                                                    "spouse": "Sir James de Audley",
+                                                                                                                                                                                    "issue": [
+                                                                                                                                                                                        {
+                                                                                                                                                                                            "name": "Sir Hugh I de Audley",
+                                                                                                                                                                                            "spouse": "Iseult de Mortimer",
+                                                                                                                                                                                            "issue": [
+                                                                                                                                                                                                {
+                                                                                                                                                                                                    "name": "Alice de Audley",
+                                                                                                                                                                                                    "spouse": "Sir Ralph de Neville",
+                                                                                                                                                                                                    "issue": [
+                                                                                                                                                                                                        {
+                                                                                                                                                                                                            "name": "Sir John de Neville",
+                                                                                                                                                                                                            "spouse": "Maude de Percy",
+                                                                                                                                                                                                            "issue": [
+                                                                                                                                                                                                                {
+                                                                                                                                                                                                                    "name": "Sir Ralph Neville",
+                                                                                                                                                                                                                    "spouse": "Joan Beaufort",
+                                                                                                                                                                                                                    "issue": [
+                                                                                                                                                                                                                        {
+                                                                                                                                                                                                                            "name": "Sir Edward Neville",
+                                                                                                                                                                                                                            "spouse": "Katherine Howard",
+                                                                                                                                                                                                                            "issue": [
+                                                                                                                                                                                                                                {
+                                                                                                                                                                                                                                    "name": "Catherine Neville",
+                                                                                                                                                                                                                                    "spouse": "Robert Tanfield",
+                                                                                                                                                                                                                                    "issue": [
+                                                                                                                                                                                                                                        {
+                                                                                                                                                                                                                                            "name": "William Tanfield",
+                                                                                                                                                                                                                                            "spouse": "Elizabeth Stavely",
+                                                                                                                                                                                                                                            "issue": [
+                                                                                                                                                                                                                                                {
+                                                                                                                                                                                                                                                    "name": "Frances Tanfield",
+                                                                                                                                                                                                                                                    "spouse": "Bridget Cave",
+                                                                                                                                                                                                                                                    "issue": [{
+                                                                                                                                                                                                                                                        "name": "Anne Tanfield",
+                                                                                                                                                                                                                                                        "spouse": "Clement Vincent",
+                                                                                                                                                                                                                                                        "issue": [
+                                                                                                                                                                                                                                                            {
+                                                                                                                                                                                                                                                                "name": "Elizabeth Vincent",
+                                                                                                                                                                                                                                                                "spouse": "Richard Lane",
+                                                                                                                                                                                                                                                                "issue": [
+                                                                                                                                                                                                                                                                    {
+                                                                                                                                                                                                                                                                        "name": "Dorothy Lane",
+                                                                                                                                                                                                                                                                        "spouse": "William Randolph",
+                                                                                                                                                                                                                                                                        "issue": [
+                                                                                                                                                                                                                                                                            {
+                                                                                                                                                                                                                                                                                "name": "Richard Randolph",
+                                                                                                                                                                                                                                                                                "spouse": "Elizabeth Ryland",
+                                                                                                                                                                                                                                                                                "issue": [
+                                                                                                                                                                                                                                                                                    {
+                                                                                                                                                                                                                                                                                        "name": "Col. William Randolph",
+                                                                                                                                                                                                                                                                                        "spouse": "Mary Isham",
+                                                                                                                                                                                                                                                                                        "issue": [
+                                                                                                                                                                                                                                                                                            {
+                                                                                                                                                                                                                                                                                                "name": "Isham Randolph",
+                                                                                                                                                                                                                                                                                                "spouse": "Jane Rogers",
+                                                                                                                                                                                                                                                                                                "issue": [
+                                                                                                                                                                                                                                                                                                    {
+                                                                                                                                                                                                                                                                                                        "name": "Jane Randolph",
+                                                                                                                                                                                                                                                                                                        "spouse": "Peter Jefferson",
+                                                                                                                                                                                                                                                                                                        "issue": [
+                                                                                                                                                                                                                                                                                                            {
+                                                                                                                                                                                                                                                                                                                "name": "Thomas Jefferson",
+                                                                                                                                                                                                                                                                                                                "titles": [
+                                                                                                                                                                                                                                                                                                                    "3rd U.S. President"
+                                                                                                                                                                                                                                                                                                                ],
+                                                                                                                                                                                                                                                                                                                "spouse": "Martha Wayles Skelton; Sally Hemings; Unknown Concubine",
+                                                                                                                                                                                                                                                                                                                "issue": [
+                                                                                                                                                                                                                                                                                                                    {
+                                                                                                                                                                                                                                                                                                                        "name": "Alfred Morris",
+                                                                                                                                                                                                                                                                                                                        "titles": [],
+                                                                                                                                                                                                                                                                                                                        "spouse": "Gabriella",
+                                                                                                                                                                                                                                                                                                                        "issue": [
+                                                                                                                                                                                                                                                                                                                            {
+                                                                                                                                                                                                                                                                                                                                "name": "Tom Morris",
+                                                                                                                                                                                                                                                                                                                                "titles": [],
+                                                                                                                                                                                                                                                                                                                                "spouse": "Martha Ann; Eliza",
+                                                                                                                                                                                                                                                                                                                                "issue": [
+                                                                                                                                                                                                                                                                                                                                    {
+                                                                                                                                                                                                                                                                                                                                        "name": "George Morris",
+                                                                                                                                                                                                                                                                                                                                        "titles": [],
+                                                                                                                                                                                                                                                                                                                                        "spouse": "Susan Mayo",
+                                                                                                                                                                                                                                                                                                                                        "issue": [
+                                                                                                                                                                                                                                                                                                                                            {
+                                                                                                                                                                                                                                                                                                                                                "name": "Edgar Morris",
+                                                                                                                                                                                                                                                                                                                                                "titles": [],
+                                                                                                                                                                                                                                                                                                                                                "spouse": "Leena Miles",
+                                                                                                                                                                                                                                                                                                                                                "issue": [
+                                                                                                                                                                                                                                                                                                                                                    {
+                                                                                                                                                                                                                                                                                                                                                        "name": "Arthur Lee Morris",
+                                                                                                                                                                                                                                                                                                                                                        "titles": [],
+                                                                                                                                                                                                                                                                                                                                                        "spouse": "Geraldine Louise Bolden",
+                                                                                                                                                                                                                                                                                                                                                        "issue": [
+                                                                                                                                                                                                                                                                                                                                                            {
+                                                                                                                                                                                                                                                                                                                                                                "name": "Steven Todd Morris",
+                                                                                                                                                                                                                                                                                                                                                                "titles": [],
+                                                                                                                                                                                                                                                                                                                                                                "spouse": "Belinda Craighead (Snow)",
+                                                                                                                                                                                                                                                                                                                                                                "issue": [
+                                                                                                                                                                                                                                                                                                                                                                    {
+                                                                                                                                                                                                                                                                                                                                                                        "name": "Ashton James Morris",
+                                                                                                                                                                                                                                                                                                                                                                        "titles": ["King XVI of the Powhatan Confederacy"],
+                                                                                                                                                                                                                                                                                                                                                                        "spouse": "",
+                                                                                                                                                                                                                                                                                                                                                                        "issue": []
+                                                                                                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                                                                                                ]
+                                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                        ]
+                                                                                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                                                                                ]
+                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                        ]
+                                                                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                                                                ]
+                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                        ]
+                                                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                                                ]
+                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                        ]
+                                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                                ]
+                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                        ]
+                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                ]
+                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                        ]
+                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                ]
+                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                        ]
+                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                    ]
+                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                            ]
+                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                    ]
+                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                            ]
+                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                    ]
+                                                                                                                                                                                                                }
+                                                                                                                                                                                                            ]
+                                                                                                                                                                                                        }
+                                                                                                                                                                                                    ]
+                                                                                                                                                                                                }
+                                                                                                                                                                                            ]
+                                                                                                                                                                                        }
+                                                                                                                                                                                    ]
+                                                                                                                                                                                }
+                                                                                                                                                                            ]
+                                                                                                                                                                        }
+                                                                                                                                                                    ]
+                                                                                                                                                                }
+                                                                                                                                                            ]
+                                                                                                                                                        }
+                                                                                                                                                    ]
+                                                                                                                                                }
+                                                                                                                                            ]
+                                                                                                                                        }
+                                                                                                                                    ]
+                                                                                                                                }
+                                                                                                                            ]
+                                                                                                                        }
+                                                                                                                    ]
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+
+
+
+
+        // Function to recursively generate HTML list items for each family member
+        function createFamilyTree(member) {
+            let titles = member.title ? ` (${member.title.join(', ')})` : "";
+            let spouse = member.spouse ? `, Spouse: ${member.spouse}` : "";
+
+            let listItem = document.createElement('li');
+            listItem.innerHTML = `<span class="toggle" onclick="toggleVisibility(event)">+</span> ${member.name}${titles}${spouse}`;
+
+            if (member.issue && member.issue.length > 0) {
+                let list = document.createElement('ul');
+                list.className = 'tree'; // Hide children initially
+                member.issue.forEach(child => {
+                    list.appendChild(createFamilyTree(child));
+                });
+                listItem.appendChild(list);
+            }
+            return listItem;
+        }
+
+        // Append the tree to the root HTML element
+        document.getElementById('familyTree').appendChild(createFamilyTree(familyData));
+
+        // Function to toggle visibility of child lists
+        function toggleVisibility(event) {
+            let target = event.target;
+            let list = target.parentNode.querySelector('.tree');
+            if (list) {
+                list.classList.toggle('hidden');
+                target.innerText = list.classList.contains('hidden') ? '+' : '-';
+            }
+        }
+    </script>
+
+</body>
+
+</html>
